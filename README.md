@@ -11,3 +11,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 * 배열.includes()
   * 포함하는지 체크
   * 값이 포함 안되는 부분을 출력하는 문제에서 사용 할 수 있음
+ * 배열.reverse()
+   * 배열의 순서를 뒤바꿈
+   * 특정 부분을 역순으로 할때
+     * splce와 reverse를 같이 사용한다.
