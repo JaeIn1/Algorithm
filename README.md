@@ -15,3 +15,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
    * 배열의 순서를 뒤바꿈
    * 특정 부분을 역순으로 할때
      * splice와 reverse를 같이 사용한다.
+* forEach(a,index)
+  * 2차원배열에서 인덱스 구할때 쉽게 구할 수 있음
+* Math.max(...arr)
+  * 배열안에 요소중 최대값 구할때 용이
