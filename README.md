@@ -1,6 +1,10 @@
 # Algorithm
 This is a auto push repository for Baekjoon Online Judge created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub).
 
+### 새로 알게된 내용
+* 2차원 배열을 만들고 그 값을 채울때 => new Array().fill()를 사용하지 않는다.
+* 이유는 fill 메소드는 얕은 복사로 값을 채우기 때문에 같은 주소값을 가지고 모든 행에 같은 값이 들어간다.
+
 ### 사용한 함수
 * sort()
   * 정렬한 배열. 원 배열이 정렬됨. (복사본이 만들어지는 것이 아님!!)
