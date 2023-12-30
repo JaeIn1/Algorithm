@@ -1,16 +1,7 @@
 function solution(str1, str2) {
-    let result = [];
-    let n1 = 0;
-    let n2 = 0;
-    let num = str1.length + str2.length;
-    for(let i = 1; i<=num; i++){
-        if(i % 2 === 1) {
-         result.push(str1[n1])
-         n1++;
-        }else{
-          result.push(str2[n2]);
-          n2++;  
-        } 
+    let result = "";
+    for(let i = 0; i<str1.length; i++){
+        result += str1[i] + str2[i];
     }
-    return result.join("");
+    return result;
 }
