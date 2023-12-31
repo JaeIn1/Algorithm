@@ -8,6 +8,5 @@ function solution(ineq, eq, n, m) {
         if(ineq === ">") n > m ? result = 1 : result = 0
         if(ineq === "<") n < m ? result = 1 : result = 0
     }
-    console.log(result);
     return result;
 }
