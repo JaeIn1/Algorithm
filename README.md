@@ -25,3 +25,6 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
   * 2차원배열에서 인덱스 구할때 쉽게 구할 수 있음
 * Math.max(...arr)
   * 배열안에 요소중 최대값 구할때 용이
+* splice()
+  * 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경합니다.
+  * array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
