@@ -1,8 +1,8 @@
 function solution(my_string, queries) {
-    for(let i of queries){
-        const [start , end] = i;
-        const reverseStr = my_string.substring(start , end + 1).split("").reverse().join("");
-        my_string = my_string.substring(0 , start) + reverseStr + my_string.substring(end +1);
+    let str = my_string.split("");
+    for(let [start , end] of queries){
+        const reverseStr = str.slice(start , end + 1).reverse();
+        str.splice(start , reverseStr.length , ...reverseStr);
     }
-    return my_string;
+    return str.join("");
 }
