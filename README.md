@@ -6,6 +6,10 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
   * 이유는 fill 메소드는 얕은 복사로 값을 채우기 때문에 같은 주소값을 가지고 모든 행에 같은 값이 들어간다.
 * 배열안에 값을 서로 바꾸는 문제일 경우 temp 사용대신 forEach(([a,b])=>{[arr[a] , arr[b]] = [arr[b] , arr[a]]})로 쉽게 바꿀 수 있다.
   * 프로그래머스 level0 수열과 구간 쿼리 3
+* 문자열의 특정 인덱스 부분을 수정하고 싶을때
+  * slice로 수정부분을 구하고
+  * splice를 사용하여 기존 문자열을 수정한다.
+  * level0 문자열 여러번 뒤집기
 
 ### 사용한 함수
 * sort()
