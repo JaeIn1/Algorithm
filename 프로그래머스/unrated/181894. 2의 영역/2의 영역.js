@@ -1,8 +1,5 @@
 function solution(arr) {
-    let index = [];
-    arr.map((e , i) => {
-        if(e === 2) index.push(i);
-    })
-    console.log(index);
-    return index.length > 0 ? arr.slice(index[0] , index[index.length-1]+1) : [-1];
+    let start = arr.indexOf(2);
+    let end = arr.lastIndexOf(2);
+    return start !== -1 ? arr.slice(start , end + 1) : [-1]
 }
