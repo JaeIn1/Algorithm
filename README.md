@@ -34,3 +34,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
   * array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
 * findIndex()
   * findIndex() 메서드는 테스트 기능을 충족하는 요소의 인덱스를 반환하거나 테스트를 통과한 요소가 없으면 -1을 반환합니다.
+* every()
+  * 배열의 모든 원소를 비교할때 사용 할 수 있다.
+  * prevArr.every((e,i) => e === next[i]); 이런식으로 사용한다.
+  * JSON.stringify()를 사용해서 비교해도 가능
