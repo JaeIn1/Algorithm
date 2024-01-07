@@ -32,3 +32,5 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 * splice()
   * 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경합니다.
   * array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+* findIndex()
+  * findIndex() 메서드는 테스트 기능을 충족하는 요소의 인덱스를 반환하거나 테스트를 통과한 요소가 없으면 -1을 반환합니다.
