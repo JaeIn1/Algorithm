@@ -1,3 +1,7 @@
 function solution(strArr) {
-    return strArr.filter(a => !a.includes('ad'));
+    let arr = [];
+    for(let i = 0; i<strArr.length; i++){
+        if(!strArr[i].includes("ad")) arr.push(strArr[i]);
+    }
+    return arr;
 }
