@@ -1,7 +1,7 @@
 function solution(strArr) {
-    strArr.map((e,i) => {
-        if(i % 2 === 0) strArr[i] = e.toLowerCase();
-        else strArr[i] = e.toUpperCase();
+    let arr = strArr.map((e,i) => {
+        if(i % 2 === 0) return e.toLowerCase();
+        else return e.toUpperCase();
     })
-    return strArr;
+    return arr;
 }
