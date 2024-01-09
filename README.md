@@ -12,6 +12,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
   * level0 문자열 여러번 뒤집기
  * 진법 변환을 하고 싶을때
    * parseInt에는 변환하고자 하는 숫자(혹은 문자)와 그 값을 표현하고 있는 진법을 입력해주면 된다. => 그러면 10진수로 변환된다.
+   * .toSting(num): 정수를 지정된 진법 num로 문자열 변환
 
 ### 사용한 함수
 * sort()
