@@ -10,6 +10,8 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
   * slice로 수정부분을 구하고
   * splice를 사용하여 기존 문자열을 수정한다.
   * level0 문자열 여러번 뒤집기
+ * 진법 변환을 하고 싶을때
+   * parseInt에는 변환하고자 하는 숫자(혹은 문자)와 그 값을 표현하고 있는 진법을 입력해주면 된다. => 그러면 10진수로 변환된다.
 
 ### 사용한 함수
 * sort()
