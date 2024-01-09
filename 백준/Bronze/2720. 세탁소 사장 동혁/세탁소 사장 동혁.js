@@ -1,11 +1,16 @@
 let fs = require("fs");
-let input = fs.readFileSync("/dev/stdin").toString().split("\n");
-let num = Number(input[0]);
-let a ,b, c, d;
-for(let i = 0; i< num; i++){
-  a = parseInt(Number(input[i+1]) / 25);
-  b = parseInt(Number(input[i+1] - a * 25) / 10); 
-  c = parseInt(Number(input[i+1] - a * 25 - b * 10) / 5);
-  d = parseInt(Number(input[i+1] - a * 25 - b * 10 - c * 5) / 1);
-  console.log(a,b,c,d);
+let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n").map(Number);
+
+for (let i = 1; i < input.length; i++) {
+  console.log(solution(input[i]));
+}
+
+function solution(change) {
+  let count = [0, 0, 0, 0];
+  const coins = [25, 10, 5, 1];
+  for (let i = 0; i < coins.length; i++) {
+    count[i] += Math.floor(change / coins[i]);
+    change %= coins[i];
+  }
+  return count.join(' ');
 }
