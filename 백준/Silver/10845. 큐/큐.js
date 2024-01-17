@@ -54,7 +54,4 @@ for(let i = 0; i<arr.length; i++){
   }
 }
 
-let answer = "";
-for(let i of result)
-  answer += i + "\n";
-console.log(answer);
+console.log(result.join("\n"));
