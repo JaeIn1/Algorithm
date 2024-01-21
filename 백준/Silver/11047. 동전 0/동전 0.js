@@ -3,20 +3,9 @@ let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 let num = input.shift().split(" ").map(Number);
 let arr = input.map(Number).reverse();
 
-let sum = 0;
-let result = num[1];
-let count = 0;
-let index = 0;
-while (sum < result) {
-  if (arr[index] > num[1]) {
-    index++;
-    continue;
-  }
-  let n = parseInt((num[1] / arr[index]));
-  count += n;
-  sum += n * arr[index];
-  num[1] -= n * arr[index];
-  index++;
+let result = 0;
+for(let i = 0; i< num[0]; i++){
+  result += parseInt(num[1] / arr[i]);
+  num[1] %= arr[i];
 }
-
-console.log(count);
+console.log(result);
