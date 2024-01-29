@@ -18,6 +18,10 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
    * 작다면 가장 왼쪽의 원소와 교체
    * lowerBound()함수를 이용한다.
    * 백준 실버2 '병사 배치하기'
+ * 이진탐색에서 생각해야 할 풀이 방법 정리
+   * 정렬된 배열이라면 k번째 수를 구할때 mid보다 작은 수를 카운트한다.
+   * mid가 k번째 수가 된다고 생각해본다.
+   * 백준 골드1 , 'k번째 수'
 
 ### 사용한 함수
 * sort()
