@@ -13,6 +13,11 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
  * 진법 변환을 하고 싶을때
    * parseInt에는 변환하고자 하는 숫자(혹은 문자)와 그 값을 표현하고 있는 진법을 입력해주면 된다. => 그러면 10진수로 변환된다.
    * .toSting(num): 정수를 지정된 진법 num로 문자열 변환
+ * 이진탐색 문제에서 LIS 배열 알고리즘
+   * 마지막 원소보다 현재 원소 x가 크다면 뒤에 삽입
+   * 작다면 가장 왼쪽의 원소와 교체
+   * lowerBound()함수를 이용한다.
+   * 백준 실버2 '병사 배치하기'
 
 ### 사용한 함수
 * sort()
