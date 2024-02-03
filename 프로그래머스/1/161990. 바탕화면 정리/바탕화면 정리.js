@@ -1,9 +1,9 @@
 function solution(wallpaper) {
     var answer = [];
     let start = wallpaper.length;
-    let end = 0;
+    let end = -1;
     let min = 50;
-    let max = 0;
+    let max = -1;
     let index = 0;
     let lastIndex = 0;
     
