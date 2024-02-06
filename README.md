@@ -22,6 +22,9 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
    * 정렬된 배열이라면 k번째 수를 구할때 mid보다 작은 수를 카운트한다.
    * mid가 k번째 수가 된다고 생각해본다.
    * 백준 골드1 , 'k번째 수'
+  * 약수의 개수를 구할때 시간복잡도 해결방법
+    * 이중 for문을 사용한다면 시간복잡도로 시간초과
+    * 두번째 for문의 수의 범위를 Math.sqrt()함수를 써서 범위를 줄인다.
 
 ### 사용한 함수
 * sort()
