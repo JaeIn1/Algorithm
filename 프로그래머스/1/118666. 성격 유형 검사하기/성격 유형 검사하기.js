@@ -1,31 +1,16 @@
 function solution(survey, choices) {
-    var answer = [];
-    const obj ={
-        R : 0,
-        T : 0,
-        C : 0,
-        F : 0,
-        J : 0,
-        M : 0,
-        A : 0,
-        N : 0,
-    }
-    for(let i = 0; i < choices.length; i++){
-        let num = choices[i];
-        let s = survey[i];
-        if(num > 4) obj[s[1]] += num - 4;
-        else if(num < 4) obj[s[0]] += 4 - num;
-        else continue;
-    }
-    let arr=  Object.keys(obj);
-    for(let i = 0; i < arr.length; i+=2){
-        if(obj[arr[i]] < obj[arr[i+1]]) answer.push(arr[i+1]);
-        else if(obj[arr[i]] > obj[arr[i+1]]) answer.push(arr[i]);
-        else{
-            let temp = [arr[i] , arr[i+1]].sort();
-            answer.push(temp[0]);
-        }
-    }
-    
-    return answer.join("");
+    var answer = '';
+    let indi = new Map();
+    ['R','T', 'C','F', 'J','M', 'A', 'N'].forEach(item => indi.set(item, 0));
+
+    choices.forEach((item,index) => {
+        let [A, B] = survey[index].split('');
+        if(item > 4) indi.set(B, indi.get(B)+item-4);
+        else if(item < 4) indi.set(A, indi.get(A)+4-item);
+    })
+    answer += indi.get('R') >= indi.get('T') ? 'R' : 'T';
+    answer += indi.get('C') >= indi.get('F') ? 'C' : 'F';
+    answer += indi.get('J') >= indi.get('M') ? 'J' : 'M';
+    answer += indi.get('A') >= indi.get('N') ? 'A' : 'N';
+    return answer;
 }
