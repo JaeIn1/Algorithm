@@ -2,21 +2,13 @@ let fs = require("fs");
 let input = fs.readFileSync("/dev/stdin").toString().split("\n");
 let [a , b] = input[0].split(" ").map(Number);
 
-let map = new Map();
-for(let i = 1; i <= a; i++) map.set(input[i] , 0);
-for(let i = a + 1; i <= a + b; i++){
-  if(map.has(input[i])) map.set(input[i] , map.get(input[i]) + 1);
+let map1 = new Set();
+let map2 = new Set();
+
+for(let i = 1; i <= input.length; i++){
+  if(i <= a) map1.add(input[i]);
+  else map2.add(input[i]);
 }
 
-for(let [key , value] of map){
-  if(value === 0) map.delete(key);
-}
-
-console.log(map.size);
-let result = [];
-for(let key of map.keys()) result.push(key);
-
-result.sort();
-for(let s of result){
-  console.log(s);
-}
+let result = [...map1].filter((data) => map2.has(data)).sort();
+console.log(result.length + "\n" + result.join("\n"));
