@@ -1,7 +1,7 @@
 function solution(board, moves) {
     var answer = 0;
     let stack = [];
-    let colArr = Array.from({length : board[0].length} , () => []);
+    let colArr = Array.from({length : board.length} , () => []);
 
     board.forEach((e , i) =>{
         for(let j = 0; j < e.length; j++){
