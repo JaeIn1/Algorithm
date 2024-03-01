@@ -2,13 +2,8 @@ function solution(n, lost, reserve) {
     var answer = 0;
     let arr = new Array(n).fill(1);
     
-    lost.forEach((e) =>{
-        arr[e - 1] -= 1;
-    })
-
-    reserve.forEach((e) =>{
-        arr[e - 1] += 1;
-    })
+    lost.forEach((e) => arr[e - 1] -= 1);
+    reserve.forEach((e) =>arr[e - 1] += 1);
     
     lost.sort((a , b) => a - b);
     
