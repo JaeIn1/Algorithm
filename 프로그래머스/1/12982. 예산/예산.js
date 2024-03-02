@@ -1,12 +1,6 @@
 function solution(d, budget) {
-    var answer = 0;
     d.sort((a , b) => a - b);
-    let i = 0;
-    while(budget > 0){
-        budget -= d[i];
-        if(budget < 0 || i === d.length) break;
-        answer++;
-        i++;
-    }
-    return answer;
+    
+    while(d.reduce((a , b) => a + b , 0) > budget) d.pop();
+    return d.length;
 }
