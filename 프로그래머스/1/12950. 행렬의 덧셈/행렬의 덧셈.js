@@ -1,11 +1,10 @@
 function solution(arr1, arr2) {
-    var answer = [];
+    var answer = [[]];
     arr1.forEach((e , i) =>{
-        let arr = [];
+        answer[i] = [];
         e.forEach((data , j) =>{
-            arr.push(data + arr2[i][j]);
+            answer[i].push(data + arr2[i][j]);
         })
-        answer.push(arr);
     })
     return answer;
 }
