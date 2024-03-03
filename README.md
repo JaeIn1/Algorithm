@@ -25,6 +25,9 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
   * 약수의 개수를 구할때 시간복잡도 해결방법
     * 이중 for문을 사용한다면 시간복잡도로 시간초과
     * 두번째 for문의 수의 범위를 Math.sqrt()함수를 써서 범위를 줄인다.
+  * 소수 찾기 시간초과 해결법
+    * 에라토스테네스의 체를 이용해서 푼다.
+    * 프로그래머스 level1 소수 찾기 참고.
 ### 정규표현식 , => 프로그래머스 신규 아이디
 * [^문자] = 대괄호 안의 문자를 제외한다.
 * \w = 밑줄 문자를 포함한 영, 숫자 문자를 의미한다.[A-Za-z0-9_]와 동일하다.
