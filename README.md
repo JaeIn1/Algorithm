@@ -28,6 +28,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
   * 소수 찾기 시간초과 해결법
     * 에라토스테네스의 체를 이용해서 푼다.
     * 프로그래머스 level1 소수 찾기 참고.
+  * Javascript의 문자열이 숫자인지 체크하기 위해서는 isNaN() 함수를 사용합니다.
 ### 정규표현식 , => 프로그래머스 신규 아이디
 * [^문자] = 대괄호 안의 문자를 제외한다.
 * \w = 밑줄 문자를 포함한 영, 숫자 문자를 의미한다.[A-Za-z0-9_]와 동일하다.
