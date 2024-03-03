@@ -8,7 +8,7 @@ function solution(arr)
             continue;
         }
         stack.push(arr[i]);
-        if(stack[stack.length - 2] === stack[stack.length - 1]){
+        if(stack[stack.length - 2] === arr[i]){
             stack.pop();
         }
     }
