@@ -1,9 +1,14 @@
 function solution(n) {
     const MOD = 1234567;
-    let arr = [0 , 1, 2];
-    for(let i = 3; i<=n; i++){
-        arr[i] = (arr[i - 1] + arr[i - 2]) % MOD;
+    let d = new Array(2000).fill(0);
+    d[1] = 1;
+    d[2] = 2;
+    
+    function fibo(x){
+        if(d[x] !== 0) return d[x];
+        d[x] = (fibo(x - 1) + fibo(x - 2)) % MOD;
+        return d[x];
     }
-        
-    return arr[n];
+    console.log(d);
+    return fibo(n);
 }
