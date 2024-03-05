@@ -1,5 +1,5 @@
 function solution(players, callings) {
-    const obj = {};
+    const obj = {}; // 배열의 순서를 자주 바꾸는 문제에서는 객체를 활용 , 시간복잡도 절약!!
     for(let i = 0; i< players.length; i++){
         obj[players[i]] = i;
     }
