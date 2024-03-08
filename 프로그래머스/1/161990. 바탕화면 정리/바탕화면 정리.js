@@ -1,22 +1,20 @@
 function solution(wallpaper) {
-    var answer = [];
-    let start = wallpaper.length;
-    let end = -1;
-    let min = 50;
-    let max = -1;
-    let index = 0;
-    let lastIndex = 0;
+    let startY = wallpaper[0].length;
+    let startX = wallpaper.length;
+    let endY = 0;
+    let endX = 0;
     
-    wallpaper.forEach((e , i) => {
-        if(e.split("").indexOf("#") > -1){
-            index = e.split("").indexOf("#");
-            lastIndex = e.split("").lastIndexOf("#");
-            start = Math.min(start, i);
-            end = Math.max(end, i+1);
-            min = Math.min(min, index);
-            max = Math.max(max , lastIndex + 1); 
-        }
-        answer = [start , min , end , max];
-    })
-    return answer;
+    for(let i = 0; i < wallpaper.length; i++){
+        let arr = wallpaper[i].split("");
+        for(let j = 0; j < arr.length; j++){
+            if(arr[j] === '#'){
+                startY = Math.min(startY , j);
+                startX = Math.min(startX , i);
+                endY = Math.max(endY , j + 1);
+                endX = Math.max(endX , i + 1);
+            }
+        } 
+    }
+    
+    return [startX , startY , endX , endY];
 }
