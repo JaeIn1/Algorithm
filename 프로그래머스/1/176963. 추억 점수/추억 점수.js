@@ -1,9 +1,14 @@
 function solution(name, yearning, photo) {
-    let score = new Map();
+    let map = new Map();
+    for(let i = 0; i < name.length; i++) map.set(name[i] , yearning[i]);
+    let answer = [];
     
-    name.forEach((e , i) => {
-        score.set(e,  yearning[i]);
-    });
-    
-    return photo.map((e) => e.reduce((a , n) => a + (score.get(n) ?? 0) , 0));
+    photo.forEach((e) =>{
+        let sum = 0;
+        e.forEach((e) =>{
+            sum += map.get(e) ? map.get(e) : 0;
+        })
+        answer.push(sum);
+    })
+    return answer;
 }
