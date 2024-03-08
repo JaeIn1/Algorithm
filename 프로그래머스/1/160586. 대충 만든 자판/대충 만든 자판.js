@@ -1,24 +1,27 @@
 function solution(keymap, targets) {
     var answer = [];
     
-    for(let i = 0; i < targets.length; i++){
+    targets.forEach((e) =>{
+        let key = e.split("");
         let sum = 0;
         
-        targets[i].split("").forEach((e) =>{
-            let count = Infinity;
-            keymap.forEach((key) => {
-                let cnt = key.indexOf(e);
-                if(cnt > -1){
-                    count = Math.min(count , cnt + 1);
+        key.forEach((e , i) =>{
+            let n = Infinity;
+            for(let j = 0; j < keymap.length; j++){
+                let idx = keymap[j].indexOf(e);
+                if(idx === -1){
+                    continue;
                 }
-            })
-            sum += count;
+                n = Math.min(n , idx + 1);
+            }
+            sum += n;
         })
         answer.push(sum);
-    }
-    answer = answer.map((e) => {
+    })
+    
+    answer = answer.map((e) =>{
         if(e === Infinity) e = -1;
         return e;
-    })
+    });
     return answer;
 }
