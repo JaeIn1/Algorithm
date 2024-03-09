@@ -6,16 +6,12 @@ function solution(babbling) {
         let babble = babbling[i];
         
         for(let j = 0; j < can.length; j++){
-            if(babble.includes(can[j].repeat(2))){
-                break;
-            }
+            if(babble.includes(can[j].repeat(2))) break;
             
             babble = babble.split(can[j]).join(" ");
+            console.log(babble.split(can[j]));
         }
-        
-        if(babble.split(" ").join("").length === 0){
-            count += 1;
-        }
+        if(babble.split(" ").join("").length === 0) count++;
     }
     
     return count;
