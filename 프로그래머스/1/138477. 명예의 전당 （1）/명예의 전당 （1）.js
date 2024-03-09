@@ -6,9 +6,7 @@ function solution(k, score) {
         result.push(e);
         result.sort((a , b) => a - b);
         if(result.length > k){
-            let min = Math.min(...result);
-            let idx = result.indexOf(min);
-            result.splice(idx, 1);
+            result.splice(0, 1);
         }
         answer.push(result[0]);
     })
