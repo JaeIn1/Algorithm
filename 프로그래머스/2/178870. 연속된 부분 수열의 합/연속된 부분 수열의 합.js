@@ -20,12 +20,7 @@ function solution(sequence, k) {
       sum += sequence[right];
     }
   }
-    console.log(result);
-  return result.sort(condition)[0];
-}
+    result.sort((a , b) => (a[1] - a[0]) - (b[1] - b[0]))[0];
 
-function condition(a, b) {
-  const lenDiff = Math.abs(a[0] - a[1]) - Math.abs(b[0] - b[1]);
-  if (lenDiff !== 0) return lenDiff; // 길이에 따라 정렬
-  return a[0] - b[0]; // 그 외는 0번째 원소 index가 낮은 순서로 정렬
+  return result[0];
 }
