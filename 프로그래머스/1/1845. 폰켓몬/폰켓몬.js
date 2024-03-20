@@ -3,6 +3,6 @@ function solution(nums) {
     let n = nums.length / 2;
     let set = new Set(nums);
     
-    answer = set.size > n ? n : set.size;
+    answer = Math.min(set.size , n);
     return answer;
 }
