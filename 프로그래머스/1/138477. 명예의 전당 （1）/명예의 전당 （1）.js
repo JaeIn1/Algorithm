@@ -5,9 +5,7 @@ function solution(k, score) {
     score.forEach((e) =>{
         result.push(e);
         result.sort((a , b) => a - b);
-        if(result.length > k){
-            result.splice(0, 1);
-        }
+        if(result.length > k) result.shift();
         answer.push(result[0]);
     })
     return answer;
