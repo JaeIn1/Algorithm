@@ -1,16 +1,29 @@
 function solution(s) {
-    var x = 0;
-    var x_count = 0;
-    var result = [];
+    let answer = [];
+    let left = 0;
+    let right = 0;
+    let prevCount = 1;
+    let curCount = 0;
+    let firstStr = s[0];
     
-    for(let i = 0; i < s.length; i++){
-        if(s[i] === s[x]) x_count++;
-        else x_count--;
-        
-        if(x_count === 0){
-            result.push(s.slice(x , i + 1));
-            x = i + 1;
+    for(let i = 1; i < s.length; i++){
+        if(firstStr === s[i]){
+            prevCount++;
+            right++;
+        }
+        else{
+            curCount++;
+            right++;
+            if(prevCount === curCount){
+                answer.push(s.slice(left , right + 1));
+                left = i + 1;
+                right = i + 1;
+                firstStr = s[i + 1];
+                prevCount = 1;
+                curCount = 0;
+                i++;
+            }
         }
     }
-    return result.join("").length === s.length ? result.length : result.length + 1;
+    return answer.join("").length < s.length ? answer.length + 1 : answer.length;
 }
