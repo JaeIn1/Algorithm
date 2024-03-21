@@ -1,27 +1,29 @@
 function solution(board, moves) {
     var answer = 0;
     let stack = [];
-    let colArr = Array.from({length : board.length} , () => []);
-
-    board.forEach((e , i) =>{
-        for(let j = 0; j < e.length; j++){
-            if(e[j] === 0) continue;
-            else colArr[j].push(e[j]);
-        }
-    })
+    let col = Array.from({length : board[0].length} , ()=>[]);
     
-    moves.forEach((e , i) =>{
-        if(colArr[e-1].length > 0){
-            let t = colArr[e - 1].shift();
-            stack.push(t);
+    for(let i = 0; i < board.length; i++){
+        let t = board[i];
+        for(let j = 0; j < t.length; j++){
+            if(t[j] === 0) continue;
+            else col[j].push(t[j]);
         }
+    }
+    
+    moves.forEach((e) => {
+        if(col[e - 1].length > 0){
+            let t = col[e - 1].shift();
+            stack.push(t);
+        }else return;
+        
         while(1){
             if(stack.length >= 2 && stack[stack.length -1] === stack[stack.length - 2]){
-              stack.pop();
-              stack.pop();
-              answer++;
-            }
-            else break;
+                stack.pop();
+                stack.pop();
+                answer++;
+            }else break;
+            
         }
     })
     return answer * 2;
