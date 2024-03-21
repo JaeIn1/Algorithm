@@ -1,24 +1,24 @@
 function solution(x, y){
   let answer = "";
-  const xHash = new Map();
-  const yHash = new Map();
-
-  x.split("")
-      .forEach(i=> xHash.set(i, xHash.has(i) ?  xHash.get(i)  +1 : 1));
-  y.split("")
-      .forEach(i=> yHash.set(i, yHash.has(i) ? yHash.get(i) +1 : 1));
-
-
-    for(let i = 9; i >= 0; i --){
-        const index = i.toString();
-        if(!xHash.has(index)) continue;
-        if(!yHash.has(index)) continue;
-
-        const num = Math.min(xHash.get(index), yHash.get(index))
-        answer += index.repeat(num)
-        //console.log(answer);
+    let mapX = new Map();
+    let mapY = new Map();
+    
+    for(let i = 0; i < x.length; i++){
+        let s = x[i];
+        mapX.set(s , mapX.get(s) ? mapX.get(s) + 1 : 1);
     }
-    if(answer.length === 0) return "-1"
-    if(answer[0] === "0" ) return "0";
+    for(let i = 0; i < y.length; i++){
+        let s = y[i];
+        mapY.set(s , mapY.get(s) ? mapY.get(s) + 1 : 1);
+    }
+    
+    for(let i = 9; i >= 0; i--){
+        if(mapX.get(`${i}`) && mapY.get(`${i}`)){
+            let n = Math.min(mapX.get(`${i}`) , mapY.get(`${i}`));
+            answer += `${i}`.repeat(n);
+        }
+    }
+    if(answer.length === 0) answer += "-1";
+    if(answer[0] === "0") answer = "0";
     return answer;
 }
