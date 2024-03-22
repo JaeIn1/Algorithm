@@ -1,12 +1,9 @@
 function solution(cards1, cards2, goal) {
-    var answer = '';
-    let flag = true;
-    goal.forEach((e , i) =>{
+    let answer = "Yes";
+    goal.forEach((e) =>{
         if(cards1[0] === e) cards1.shift();
-        else if(cards2[0] === e) cards2.shift();
-        else flag = false;
-    });
-    answer = "Yes";
-    if(!flag) return "No";
+        else if(cards2[0] === e)cards2.shift();
+        else answer = "No";
+    })
     return answer;
 }
