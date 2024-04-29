@@ -20,7 +20,8 @@ class Queue {
     return this.item.length === 0 ? 1 : 0;
   }
 }
-
+let dx = [-2 , -2 , -1 , -1 , 1 , 1,  2,  2];
+let dy = [-1 , 1 , -2 , 2 , -2 , 2 , -1 , 1];
 
 while (testcase--) {
   let queue = new Queue();
@@ -36,16 +37,9 @@ while (testcase--) {
     while (queue.getLength() !== 0) {
       let [cx, cy] = queue.dequeue();
       if(cx === ex && cy === ey) return visited[cx][cy];
-      for (let [nx , ny] of [
-        [cx - 2, cy - 1],
-        [cx - 2, cy + 1],
-        [cx - 1, cy - 2],
-        [cx - 1, cy + 2],
-        [cx + 2, cy - 1],
-        [cx + 2, cy + 1],
-        [cx + 1, cy - 2],
-        [cx + 1, cy + 2],
-      ]) {
+      for (let i = 0; i < 8; i++){
+        let nx = cx + dx[i];
+        let ny = cy + dy[i];
         if(nx < 0 || nx >= n || ny < 0 || ny >= n) continue;
         if(!visited[nx][ny]){
           queue.enqueue([nx , ny]);
