@@ -12,7 +12,10 @@ function possible(x , y){
   return true;
 }
 function dfs(row){
-  if(row === num) answer++;
+  if(row === num) {
+      answer++;
+      return;
+  }
   for(let i = 0; i < num; i++){
     if(!possible(row , i)) continue;
     queen.push([row , i]);
