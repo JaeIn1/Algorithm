@@ -6,5 +6,5 @@ function solution(numbers) {
             if(!answer.includes(num)) answer.push(num);
         }
     }
-    return [...new Set([...answer])].sort((a , b) => a - b);
+    return answer.sort((a , b) => a - b);
 }
