@@ -1,40 +1,19 @@
-
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
 function solution(answers) {
-    var answer = [];
-    const man1 = [1, 2, 3, 4, 5];
-    const man2 = [2, 1, 2, 3, 2, 4, 2, 5];
-    const man3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
-    let count = [0, 0, 0];
-
-    for(let i = 0; i < answers.length; i++) {
-        if(answers[i] == man1[i % man1.length]) count[0]++;
-        if(answers[i] == man2[i % man2.length]) count[1]++;
-        if(answers[i] == man3[i % man3.length]) count[2]++;
-    }
-
-    const max = Math.max(count[0], count[1], count[2]);
-    for(let i = 0; i < count.length; i++) {
-        if(max == count[i]) answer.push(i + 1);
-    }
-
-    return answer;
+    var answer = [[1 , 0] ,[2 , 0], [3 , 0]];
+    let p1 = [1, 2, 3, 4, 5];
+    let p2 = [2, 1, 2, 3, 2, 4, 2, 5];
+    let p3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+    
+    answers.forEach((e , i) =>{
+        if(e === p1[(i) % p1.length]) answer[0][1]++;
+        if(e === p2[(i) % p2.length]) answer[1][1]++;
+        if(e === p3[(i) % p3.length]) answer[2][1]++;
+    });
+    
+    let max = 0;
+    answer.forEach((e) =>{
+        max = Math.max(max , e[1]);
+    });
+    
+    return answer.filter((e) => e[1] === max).map((e) => e[0]);
 }
