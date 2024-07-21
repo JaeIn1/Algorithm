@@ -1,7 +1,7 @@
 function solution(N, stages) {
     let answer = [];
     let result = [];
-    let totalPiple = stages.length;
+    let totalPeople = stages.length;
     
     let map = new Map();
     stages.sort((a , b) => a - b);
@@ -11,9 +11,9 @@ function solution(N, stages) {
     
     for(let i = 1; i <= N; i++){
         if(map.has(i)){
-            let failRate = (map.get(i) / totalPiple);
+            let failRate = (map.get(i) / totalPeople);
             result.push([i , failRate]);
-            totalPiple -= map.get(i);
+            totalPeople -= map.get(i);
         }
         else{
             result.push([i , 0]);
