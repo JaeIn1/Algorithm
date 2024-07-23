@@ -1,16 +1,8 @@
 function solution(arr)
 {
-    var answer = [];
-    let stack = [];
-    for(let i = 0; i < arr.length; i++){
-        if(i === 0){
-            stack.push(arr[i]);
-            continue;
-        }
-        stack.push(arr[i]);
-        if(stack[stack.length - 2] === arr[i]){
-            stack.pop();
-        }
+    let stack = [arr[0]];
+    for(let i = 1; i < arr.length; i++){
+        if(stack[stack.length - 1] != arr[i]) stack.push(arr[i]);
     }
     return stack;
 }
