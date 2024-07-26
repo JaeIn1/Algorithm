@@ -1,17 +1,18 @@
 function solution(priorities, location) {
-    const queue = []
-    priorities = priorities.map((priority, index) => [priority, index])
-    
-    while(priorities.length) {
-        const [priority, index] = priorities.shift();
-        const higherImportance = priorities.findIndex(([value, _]) => value > priority)
+    let arr = [];
+    let queue = priorities.map((e, i) => [e, i]);
+    let cnt = 1;
+    while(queue.length > 0){
+        let [num , idx] = queue.shift();
         
-        if(higherImportance === -1){
-            if(index === location) return queue.length + 1  
-            queue.push([priority, index])  
-            continue
+        if(queue.filter((e) => e[0] > num).length > 0){
+            queue.push([num , idx]);
         }
-        
-        priorities.push([priority, index]);
+        else{
+            arr.push([num , idx,  cnt++])
+        }
     }
+    
+    let answer = arr.filter((e) => e[1] === location)
+    return answer[0][2];
 }
