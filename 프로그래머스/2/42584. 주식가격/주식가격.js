@@ -1,3 +1,4 @@
+// 효율성이 매우 안좋다.
 function solution(prices) {
     var answer = [];
     for(let i = 0; i < prices.length; i++){
