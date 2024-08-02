@@ -1,9 +1,7 @@
 def solution(array, commands):
     answer = []
-    for i in commands:
-        s , e , t = i
-        newArr = list(array[s - 1:e])
-        newArr.sort()
-        answer.append(newArr[t - 1]);
+    for command in commands:
+        i,j,k = command
+        answer.append(sorted(array[i - 1: j])[k - 1])
         
     return answer
