@@ -32,7 +32,6 @@ function solution(maps) {
     let flag = false;
     let dx = [1 ,-1 , 0 , 0];
     let dy = [0 , 0 , 1,  -1];
-    
     function inRange(x , y){
         return 0 <= x && x < n && 0 <= y && y < m;
     }
