@@ -2,14 +2,14 @@ from collections import deque
 
 def solution(priorities, location):
     answer = []
-    queue = deque((i, j) for i, j in enumerate(priorities))
-    while queue:
-        process = queue.popleft()
-        if queue and any(process[1] < q[1] for q in queue):
-            queue.append(process)
-        else:
-            answer.append(process)
+    dq = deque([(i , p) for i , p in enumerate(priorities)])
     
-    for i in answer:
-        if i[0] == location:
-            return answer.index(i) + 1
+    while len(dq):
+        item = dq.popleft()
+        if dq and any(item[1] < q[1] for q in dq):
+            dq.append(item)
+        else:
+            answer.append(item)
+            
+    for i , q in enumerate(answer):
+        if q[0] == location: return i + 1
