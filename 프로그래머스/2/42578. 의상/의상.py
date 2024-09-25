@@ -5,9 +5,9 @@ def solution(clothes):
     for i in clothes:
         v , k = i
         if k in clothes_dict: clothes_dict[k] += 1
-        else: clothes_dict[k] = 1
+        else: clothes_dict[k] = 2
     
     for i in clothes_dict.values():
-        answer *= i + 1
+        answer *= i
 
     return answer - 1
