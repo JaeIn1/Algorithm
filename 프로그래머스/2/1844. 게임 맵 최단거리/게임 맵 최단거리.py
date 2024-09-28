@@ -1,25 +1,28 @@
-from collections import deque 
+from collections import deque
 
-def solution(maps):
-    x_h, y_h = len(maps[0]), len(maps)
+def checkRange(x , y , x_h , y_h):
+    return x >= x_h or x < 0 or y >= y_h or y < 0
 
-    dx = [-1, 1, 0, 0]
-    dy = [0, 0, -1, 1]
-    visited = [[False for _ in range(x_h)] for _ in range(y_h) ]
+
+def bfs(maps ,visited , x_h , y_h):
+    dx = [1 , -1 , 0 , 0]
+    dy = [0 , 0 , -1 , 1]
 
     queue = deque([(0, 0, 1)])
-    visited[0][0] = True
-
-    while queue:
-        x, y, d = queue.popleft()
-
+    
+    while len(queue) > 0:
+        x , y , value = queue.popleft()
+        
         for i in range(4):
-            nx, ny = x + dx[i], y + dy[i]
-
-            if 0 <= nx and nx < x_h and 0 <= ny and ny < y_h:
-                if not visited[ny][nx] and maps[ny][nx] == 1:
-                    if nx == x_h - 1 and ny == y_h - 1:
-                        return d + 1
-                    queue.append((nx, ny ,d + 1))
-                    visited[ny][nx] = True
-    return -1
+            nx , ny = x + dx[i] , y + dy[i]
+            if not checkRange(nx, ny, x_h, y_h) and not visited[nx][ny] and maps[nx][ny] == 1:
+                queue.append([nx , ny , value + 1])
+                visited[nx][ny] = True
+                if nx == x_h - 1 and ny == y_h - 1: return value + 1
+            
+                             
+def solution(maps):
+    x_h , y_h = len(maps) , len(maps[0])
+    visited = [[False] * y_h for _ in range(x_h)]
+    result = bfs(maps , visited , x_h , y_h)
+    return result if result else -1
