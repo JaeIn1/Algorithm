@@ -10,7 +10,7 @@ def dfs(start ,path, graph):
 
 def solution(tickets):
     path = []
-    tickets.sort(key = lambda x : (x[0] , x[1]))
+    tickets.sort(key = lambda x : x[1])
     
     graph = defaultdict(list)
     for s , e in tickets:
@@ -21,6 +21,5 @@ def solution(tickets):
     
     start = 'ICN'
     dfs(start , path , graph)
-    path.reverse()
     
-    return path
+    return path[::-1]
