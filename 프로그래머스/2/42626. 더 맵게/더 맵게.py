@@ -4,15 +4,15 @@ def solution(scoville, K):
     heapq.heapify(scoville)
     answer = 0
 
-    while scoville[0] < K:
+    while True:
+        
+        if scoville[0] >= K: break
         if len(scoville) < 2:
             return -1
         
         first = heapq.heappop(scoville)
         second = heapq.heappop(scoville)
-        new_food = first + (second * 2)
-        
-        heapq.heappush(scoville, new_food)
+        heapq.heappush(scoville, first + (second * 2))
         
         answer += 1
     
