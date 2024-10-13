@@ -1,10 +1,10 @@
 # [level 2] 숫자의 표현 - 12924 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12924) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12924?language=python3) 
 
 ### 성능 요약
 
-메모리: 35.2 MB, 시간: 1.64 ms
+메모리: 10.2 MB, 시간: 6.31 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 03월 04일 01:09:15
+2024년 10월 13일 19:54:25
 
 ### 문제 설명
 
