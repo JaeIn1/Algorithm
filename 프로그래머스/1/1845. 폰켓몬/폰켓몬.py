@@ -1,2 +1,3 @@
 def solution(nums):
-    return min(len(list(set(nums))) , len(nums) // 2)
+    result = min(len(nums) // 2 , len(set(nums)))
+    return result
