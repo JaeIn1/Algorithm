@@ -1,14 +1,16 @@
+from collections import Counter
+
 def solution(participant, completion):
-    participant_dict = dict()
     
-    for i in participant:
-        if i in participant_dict:
-            participant_dict[i] += 1
-        else: participant_dict[i] = 1
+    d = dict(Counter(participant))
     
-    for i in completion:
-        if i in participant_dict: participant_dict[i] -= 1
-        
-    for key , value in participant_dict.items():
-        if value == 1:
+    for c in completion:
+        if c in d:
+            d[c] -= 1
+            
+
+    for key , value in d.items():
+        if value > 0:
             return key
+    
+    
