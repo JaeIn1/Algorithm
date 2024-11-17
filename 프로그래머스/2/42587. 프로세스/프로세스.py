@@ -4,6 +4,8 @@ def solution(priorities, location):
     answer = []
     dq = deque([(i , p) for i , p in enumerate(priorities)])
     
+    print(dq)
+    
     while len(dq):
         item = dq.popleft()
         if dq and any(item[1] < q[1] for q in dq):
