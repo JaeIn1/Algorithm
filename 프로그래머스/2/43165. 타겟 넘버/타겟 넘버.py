@@ -1,17 +1,20 @@
-
-
-def dfs(idx, numbers, target , value):
-    if len(numbers) == idx:
-        if value == target: 
-            return 1
-        return 0
-    
-    temp = 0
-    temp += dfs(idx + 1 , numbers , target , value + numbers[idx])
-    temp += dfs(idx + 1 , numbers , target , value - numbers[idx])
-    
-    return temp
-
 def solution(numbers, target):
-    answer = dfs(0, numbers, target , 0)
+    
+    answer = 0
+    def dfs(idx , temp):
+        nonlocal answer
+        if idx == len(numbers):
+            if temp == target:
+                answer += 1
+                return True
+            return False
+        
+        # 음수일 경우
+        dfs(idx + 1 , temp - numbers[idx])
+            
+        # 양수일 경우
+        dfs(idx + 1 , temp + numbers[idx])
+        
+    dfs(0 , 0)
+    
     return answer
