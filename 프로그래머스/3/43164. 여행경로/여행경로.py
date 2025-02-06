@@ -13,8 +13,6 @@ def solution(tickets):
     start = 'ICN'
     
     
-    
-    
     def dfs(start , path , graph):
         while graph[start]:
             next_airport = graph[start].pop(0)
