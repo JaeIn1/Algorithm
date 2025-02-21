@@ -1,38 +1,35 @@
 def solution(m, n, board):
-    answer = 0
+    cnt = 0
     while True:
-        # 검사하기
-        erased = []
-        for i in range(m-1):
-            for j in range(n-1):
-                temp = board[i][j]
-                if temp == ' ':  continue
-                if temp == board[i+1][j+1] and temp == board[i+1][j] and temp == board[i][j+1]:
-                    erased.append([i,j])
-        # 검사 결과 변화가 없다면 반환하기
-        if len(erased) == 0 :
-            for k in range(m):
-                answer += board[k].count(' ')
-            return answer
-        # 검사 반영하기
-        for y,x in erased:
-            board[y] = board[y][:x] + ' '*2 + board[y][x+2:]
-            if x+2 == n:
-                board[y+1] = board[y+1][:x] + ' '*2
-            else:
-                board[y+1] = board[y+1][:x] + ' '*2 + board[y+1][x+2:]
-        # 당겨서 정리하기
-        pulled = []
-        for i in range(n):
-            temp = ''
-            for j in range(m):
-                if board[j][i] != " ":
-                    temp += board[j][i]
-            
-            temp = ' '*(m-len(temp)) + temp
-            pulled.append(temp)
-        for i in range(m):
-            temp = ''
-            for j in range(n):
-                temp += pulled[j][i]
-            board[i] = temp
+        cnt_lst = []
+        for j in range(m-1):
+            for i in range(n-1):
+                if board[j][i] == board[j + 1][i] == board[j][i + 1] == board[j + 1][i + 1] != '0':
+                    cnt_lst.append([j, i])
+                    cnt_lst.append([j, i + 1])
+                    cnt_lst.append([j + 1, i])
+                    cnt_lst.append([j + 1, i + 1])
+        unique_data = [list(x) for x in set(tuple(x) for x in cnt_lst)]
+        cnt+=len(unique_data)
+
+        #겹치는 부분이 없으면 리턴
+        if len(cnt_lst) == 0:
+            return cnt
+
+        for i in unique_data: #사라진 위치의 값을 0으로 변환
+            board[i[0]] = board[i[0]][:i[1]] + '0' + board[i[0]][i[1]+1:]
+
+        #아래로 내려오게 해야해서 뒤집은 다음에 for 문 실행
+        board.reverse()
+        # 비어진 부분을 내리는 과정
+        for j in range(m-1):
+            for i in range(n):
+                #0 인 부분이 나오면 그 위에 0 이 아닌 값을 찾아서 바꾼다
+                if board[j][i] == '0':
+                    for k in range(1,m-j):
+                        if board[j+k][i] != '0':
+                            board[j] = board[j][:i] + board[j+k][i] + board[j][i + 1:]
+                            board[j+k] = board[j+k][:i] + '0' + board[j+k][i + 1:]
+                            break
+
+        board.reverse()
