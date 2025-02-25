@@ -1,8 +1,9 @@
 def solution(array, commands):
-    
     result = []
-    for s , e , k in commands:
-        temp = sorted(array[s - 1 : e])
-        result.append(temp[k - 1])
+    
+    for c in commands:
+        s , e , n = c
+        tmep = sorted(array[s-1:e])
+        result.append(tmep[n - 1])
         
     return result
