@@ -1,35 +1,29 @@
-from collections import deque
+import sys
+sys.setrecursionlimit(10**6)
+input = sys.stdin.readline
 
-n = int(input())
+N = int(input())
+graph = [[] for _ in range(N + 1)]
+par = [0 for _ in range(N + 1)]
 
-graph = [[] for _ in range(n + 1)]
+for _ in range(N - 1):
+    a , b = map(int , input().rstrip().split())
 
-for _ in range(n - 1):
-    a, b = map(int, input().split()) 
     graph[a].append(b)
     graph[b].append(a)
-
-
-visited = [False for _ in range(n + 1)]
-answer = [[] for _ in range(n + 1)]
-
-
-def bfs(graph , v , visited):
-    queue = deque([v])
     
-    while len(queue) > 0:
-        cur = queue.popleft()
-        visited[cur] = True
-        
-        for i in graph[cur]:
-            if not visited[i]:
-                answer[i] = cur
-                queue.append(i)
-                visited[i] = True
-            
 
-bfs(graph , 1 , visited)
+visited = [0]*(N+1) 
+def dfs(node ,prev):
+    
+    par[node] = prev
+    
+    for nxt in graph[node]:
+        if visited[nxt] == 0:
+            visited[nxt] = 1
+            dfs(nxt , node)
+    
+dfs(1 , 0)
 
-for i in range(2 , len(answer)):
-    print(answer[i])
-
+for p in range(2 , len(par)):
+    print(par[p])
