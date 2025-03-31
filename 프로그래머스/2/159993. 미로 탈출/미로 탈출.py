@@ -1,83 +1,46 @@
 from collections import deque
-
-def solution(maps):
+    
+def bfs(start, end, maps):
     answer = 0
-    temp1 = 0
-    temp2 = 0
     
-    len_x = len(maps)
-    len_y = len(maps[0])
-    visited = [[0] * len_y for _ in range(len_x)]
+    dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
+    row, col = len(maps), len(maps[0])
+                              
+    check = [[0] * col for _ in range(row)]
     
-    dx = [-1 , 1 , 0 , 0]
-    dy = [0 , 0 , -1 , 1]
+    for i in range(len(maps)):
+        for j in range(len(maps[0])):
+            if maps[i][j] == start:
+                start = [i, j]
+            elif maps[i][j] == end:
+                end = [i, j]
     
-    sx , sy = 0 , 0
-    lx , ly = 0 , 0
-    ex , ey = 0 , 0
+    x, y = start[0], start[1]
+
+    q = deque()
+    q.append([x, y, 0])    
     
-    
-    for i in range(len_x):
-        for j in range(len_y):
-            if maps[i][j] == 'S':
-                sx , sy = i , j
-            elif maps[i][j] == 'L':
-                lx , ly = i , j
-            elif maps[i][j] == 'E':
-                ex , ey = i , j
-                
-    
-    def bfs_l(x , y):
-        queue = deque([(x , y , 0)])
-        visited[x][y] = 1
+    while(q):
+        x, y, res = q.popleft()
         
-        while queue:
-            cx , cy , cnt = queue.popleft()
+        if x == end[0] and y == end[1]:
+            return res
+
+        for i in range(4):
+            nx, ny = x + dx[i], y + dy[i]
             
-            if maps[cx][cy] == 'L':
-                return cnt
+            if 0 <= nx < row and 0 <= ny < col:
+                if check[nx][ny] == 0 and maps[nx][ny] != "X":
+                    check[nx][ny] = 1
+                    q.append([nx, ny, res+1])
             
-            for i in range(4):
-                nx = cx + dx[i]
-                ny = cy + dy[i]
-                
-                if 0 <= nx < len_x and 0 <= ny < len_y and visited[nx][ny] == 0:
-                    if maps[nx][ny] != 'X':
-                        queue.append((nx , ny , cnt + 1))
-                        visited[nx][ny] = 1
-        return -1
+    return -1
+                              
+def solution(maps):
+    to_lever = bfs("S", "L", maps)  # '시작 지점 -> 레버' 경로의 거리 구하기
+    to_end = bfs("L", "E", maps)    # '레버 -> 출구' 경로의 거리 구하기
+         
+    if to_lever != -1 and to_end != -1:
+        return to_lever + to_end
     
-    
-    def bfs_e(x , y):
-        queue = deque([(x , y , 0)])
-        visited[x][y] = 1
-        
-        while queue:
-            cx , cy , cnt = queue.popleft()
-            
-            if maps[cx][cy] == 'E':
-                return cnt
-            
-            for i in range(4):
-                nx = cx + dx[i]
-                ny = cy + dy[i]
-                
-                if 0 <= nx < len_x and 0 <= ny < len_y and visited[nx][ny] == 0:
-                    if maps[nx][ny] != 'X':
-                        queue.append((nx , ny , cnt + 1))
-                        visited[nx][ny] = 1
-        return -1
-    
-    
-    temp1 += bfs_l(sx , sy)
-    if temp1 == -1:
-        return -1
-    
-    visited = [[0] * len_y for _ in range(len_x)]
-    temp2 += bfs_e(lx , ly)
-    if temp2 == -1:
-        return -1
-    
-    answer = temp1 + temp2
-    
-    return answer
+    return -1
