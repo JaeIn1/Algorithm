@@ -2,8 +2,9 @@ def solution(array, commands):
     result = []
     
     for c in commands:
-        s , e , n = c
-        tmep = sorted(array[s-1:e])
-        result.append(tmep[n - 1])
+        s , e , k = c
+        sort_arr = sorted(array[s-1 : e])
+        result.append(sort_arr[k - 1])
+    
         
     return result
