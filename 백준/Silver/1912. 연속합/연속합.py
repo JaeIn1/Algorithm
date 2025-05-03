@@ -1,10 +1,10 @@
-N = int(input())
-
-prefix = [0] * (N + 1)
+n = int(input())
 arr = list(map(int , input().split()))
 
-for i in range(N):
-    prefix[i + 1] = max(prefix[i] + arr[i] , arr[i])
+prefix = [0] * (n + 1)
 
+for i in range(n):
+    prefix[i + 1] = max(prefix[i] + arr[i],  arr[i])
+    
     
 print(max(prefix[1:]))
