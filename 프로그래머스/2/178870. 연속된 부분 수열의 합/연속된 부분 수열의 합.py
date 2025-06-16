@@ -1,19 +1,22 @@
 def solution(sequence, k):
-    start, end = 0, 0
-    cur_sum = sequence[0]
-    answer = [0 , len(sequence)]
+    start = 0
+    current_sum = 0
+    min_length = float('inf')
+    answer = []
     
-    while end < len(sequence):
-        if cur_sum == k:
-            if (end - start) < (answer[1] - answer[0]):
-                answer = [start , end]
-                
-        if cur_sum >= k:
-            cur_sum -= sequence[start]
+    for end in range(len(sequence)):
+        current_sum += sequence[end]
+        
+        # 합이 k보다 클 때까지 start 이동
+        while current_sum > k:
+            current_sum -= sequence[start]
             start += 1
-        else:
-            end += 1
-            if end < len(sequence):
-                cur_sum += sequence[end]
-         
+        
+        # 합이 k와 같으면 답 후보
+        if current_sum == k:
+            current_length = end - start + 1
+            if current_length < min_length:
+                min_length = current_length
+                answer = [start, end]
+    
     return answer
