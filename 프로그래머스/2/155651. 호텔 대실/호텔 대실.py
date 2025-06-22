@@ -1,32 +1,33 @@
 def solution(book_time):
-    answer = 0
     room = []
+    time = []
     
-    new_book_time = [[0, 0] for _ in range(len(book_time))]
-    for idx, (s, e) in enumerate(book_time):
-        ns = list(map(int, s.split(":")))
-        ne = list(map(int, e.split(":")))
-        
-        new_book_time[idx][0] = ns[0] * 60 + ns[1]
-        new_book_time[idx][1] = ne[0] * 60 + ne[1]
+    # 시간을 분 단위로 변환
+    for b in book_time:
+        s, e = b
+        s_h, s_m = map(int, s.split(":"))
+        e_h, e_m = map(int, e.split(":"))
+        time.append([s_h * 60 + s_m, e_h * 60 + e_m])
     
-    new_book_time.sort(key=lambda x: x[0])
+    # 시작 시간을 기준으로 정렬
+    time.sort(key=lambda x: x[0])
     
-    room.append(new_book_time[0][1] + 10)
-
-    for i in range(1, len(new_book_time)):
-        s, e = new_book_time[i]
-        flag = False
+    for t in time:
+        s, e = t
         
-        for j in range(len(room)):
-            if s >= room[j]:
-                flag = True
-                room[j] = e + 10 
-                break
+        # 사용 가능한 방 찾기 (가장 빨리 사용 가능한 방)
+        available_room = -1
+        earliest_time = float('inf')
         
-        if not flag:
+        for i in range(len(room)):
+            if room[i] <= s and room[i] < earliest_time:
+                available_room = i
+                earliest_time = room[i]
+        
+        # 사용 가능한 방이 있으면 업데이트, 없으면 새 방 추가
+        if available_room != -1:
+            room[available_room] = e + 10
+        else:
             room.append(e + 10)
-        
-
+    
     return len(room)
-
