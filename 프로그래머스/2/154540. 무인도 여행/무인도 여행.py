@@ -1,34 +1,46 @@
-import sys
-
-sys.setrecursionlimit(10**6)
+from collections import deque
 
 def solution(maps):
     answer = []
     
-    len_x = len(maps)
-    len_y = len(maps[0])
+    dx = [1 , -1 , 0 , 0]
+    dy = [0 , 0 , 1 , -1]
     
-    visited = [[0 for _ in range(len_y)] for _ in range(len_x)]
+    row_len = len(maps)
+    col_len = len(maps[0])
     
-    dx = [-1, 1, 0, 0]
-    dy = [0, 0, -1, 1]
+    visited = [[0] * col_len for _ in range(row_len)]
     
-    def dfs(x, y):
-        food = int(maps[x][y])
+    
+    def bfs(x , y):
+        q = deque()
+        q.append((x , y))
         visited[x][y] = 1
+        sum_date = int(maps[x][y])
         
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
+        while q:
+            cx , cy = q.popleft()
             
-            if 0 <= nx < len_x and 0 <= ny < len_y:
-                if not visited[nx][ny] and maps[nx][ny] != 'X':
-                    food += dfs(nx, ny) 
-        return food
+            for i in range(4):
+                nx = cx + dx[i]
+                ny = cy + dy[i]
+                
+                if 0 <= nx < row_len and 0 <= ny < col_len and visited[nx][ny] == 0:
+                    if maps[nx][ny] != 'X':
+                        visited[nx][ny] = 1
+                        q.append((nx , ny))
+                        sum_date += int(maps[nx][ny])
+        
+        return sum_date
     
-    for i in range(len_x):
-        for j in range(len_y):
-            if not visited[i][j] and maps[i][j] != 'X':
-                answer.append(dfs(i, j))
+    for r in range(row_len):
+        for c in range(col_len):
+            if visited[r][c] == 0 and maps[r][c] != 'X':
+                answer.append(bfs(r , c))
+            
     
-    return sorted(answer) if answer else [-1]
+    answer.sort()
+    if len(answer):
+        return answer
+
+    return [-1]
