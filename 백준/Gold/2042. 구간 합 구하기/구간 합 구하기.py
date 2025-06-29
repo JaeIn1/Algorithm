@@ -10,7 +10,7 @@ tree = [0] * 2**(h + 1)
 
 def tree_init(start , end , index):
     if start == end:
-        tree[index] = l[start - 1]
+        tree[index] = l[start]
         return tree[index]
     
     mid = (start + end) // 2
@@ -19,7 +19,6 @@ def tree_init(start , end , index):
 
 
 def tree_search(start, end , left , right , index):
-    # 1, 5, 2, 5
     if start > right or end < left:
         return 0
     
@@ -49,7 +48,7 @@ for _ in range(N):
 
 
 
-tree_init(1, N, 1)
+tree_init(0, N-1, 1)
 
 for _ in range(M + K):
     a, b, c = map(int , input().split())
@@ -57,8 +56,8 @@ for _ in range(M + K):
     if a == 1:
         diff = c - l[b-1]
         l[b-1] = c
-        tree_update(1, N , b, diff, 1)
+        tree_update(0, N-1 , b-1, diff, 1)
 
 
     elif a == 2:
-        print(tree_search(1, N, b , c, 1))
+        print(tree_search(0, N-1, b-1 , c-1, 1))
