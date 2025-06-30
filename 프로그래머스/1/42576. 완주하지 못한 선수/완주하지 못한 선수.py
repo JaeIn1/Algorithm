@@ -1,22 +1,18 @@
-from collections import Counter
-
 def solution(participant, completion):
-    answer = 0
     
-    d = dict(Counter(participant))
+    d = dict()
+    
+    for p in participant:
+        if p in d:
+            d[p] += 1
+        else:
+            d[p] = 1
     
     for c in completion:
         if c in d:
             d[c] -= 1
-    
-    for k , v in d.items():
-        if v > 0:
-            return k
-
-    
-
-  
-    return answer
-    
-    
-    
+            
+    for key, value in d.items():
+        if value == 1:
+            return key
+            
