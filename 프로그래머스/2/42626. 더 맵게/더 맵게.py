@@ -1,17 +1,19 @@
+import heapq as hq
 
-import heapq
-
-def solution(S, K):
-    heap = []
-    for s in S:
-        heapq.heappush(heap, s)
-
-    cnt = 0
-    while heap[0] < K:
-        try:
-            heapq.heappush(heap, heapq.heappop(heap) + heapq.heappop(heap) * 2)
-        except IndexError:
-            return -1
-        cnt += 1
+def solution(scoville, K):
+    answer = 0
+    hq.heapify(scoville)
     
-    return cnt
+    while True:
+        first = hq.heappop(scoville)
+        if first >= K:
+            break
+        
+        if len(scoville) < 1:
+            return -1
+        
+        second = hq.heappop(scoville)
+        hq.heappush(scoville, first + second*2)
+        answer += 1
+        
+    return answer
