@@ -1,22 +1,17 @@
-from heapq import heappop , heappush
 
-def solution(scoville, K):
-    h = []
-    for i in scoville:
-        heappush(h , i)
-        
-    answer = 0
+import heapq
 
-    while True:
-        
-        if h[0] >= K: break # 아직 정렬된 상태는 아니지만 항상 맨 앞은 가장 작은 수로 정해진다.
-        if len(h) < 2:
+def solution(S, K):
+    heap = []
+    for s in S:
+        heapq.heappush(heap, s)
+
+    cnt = 0
+    while heap[0] < K:
+        try:
+            heapq.heappush(heap, heapq.heappop(heap) + heapq.heappop(heap) * 2)
+        except IndexError:
             return -1
-        
-        first = heappop(h)
-        second = heappop(h)
-        heappush(h, first + (second * 2))
-        
-        answer += 1
+        cnt += 1
     
-    return answer
+    return cnt
