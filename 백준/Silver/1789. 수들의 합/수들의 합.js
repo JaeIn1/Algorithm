@@ -1,12 +1,20 @@
-const fs = require("fs");
-let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+let fs = require("fs");
+let input = fs.readFileSync("/dev/stdin").toString().split("\n");
+
 let num = Number(input[0]);
 
 let sum = 0;
-let cnt = 1;
-while (sum <= num) {
-  sum += cnt;
-  if(sum > num) break;
-  cnt++;
+let index = 1;
+
+while (1) {
+  sum += index;
+
+  if (sum > num) {
+    index -= 1;
+    break;
+  }
+
+  index += 1;
 }
-console.log(cnt-1);
+
+console.log(index);
