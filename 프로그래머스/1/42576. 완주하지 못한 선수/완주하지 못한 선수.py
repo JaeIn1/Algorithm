@@ -12,7 +12,9 @@ def solution(participant, completion):
         if c in d:
             d[c] -= 1
             
+    
     for key, value in d.items():
-        if value == 1:
+        if value > 0:
             return key
+
             
