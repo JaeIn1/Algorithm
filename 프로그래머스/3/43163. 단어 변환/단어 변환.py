@@ -1,3 +1,7 @@
+# 최소 몇 단계의 과정 -> bfs 생각
+# 알파벳 하나만 다른 단어를 큐에 추가 + step + 1
+# 해당 단어랑 같다면 현재 step을 반환
+
 from collections import deque
 
 def solution(begin, target, words):
