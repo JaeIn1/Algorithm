@@ -1,36 +1,46 @@
 import math
+from collections import defaultdict
 
 def solution(fees, records):
-    park_d = dict()
-    d = dict()      
-
-    for record in records:
-        time, num, check = record.split()
-        h, m = map(int, time.split(":"))
-        time_minutes = h * 60 + m
-
-        if check == 'IN':
-            d[num] = time_minutes
-            if num not in park_d:
-                park_d[num] = 0
-        elif check == 'OUT':
-            if num in d:
-                parked_time = time_minutes - d[num]
-                park_d[num] += parked_time
-                del d[num]
-
-
-    for num, time in d.items():
-        parked_time = (23 * 60 + 59) - time
-        park_d[num] += parked_time
+    answer = []
     
-    price = {}
-    for num, total_time in park_d.items():
-        if total_time <= fees[0]:
-            price[num] = fees[1]
+    base_time, base_fee, unit_time, unit_fee = fees
+    d = defaultdict(lambda : [0, 0])
+    
+    for record in records:
+        time, car_num, car_state = record.split(" ")
+        h , m = map(int, time.split(":"))
+        current_time = h * 60 + m
+        
+        
+        if car_state == "IN":
+            d[car_num][0] = current_time
         else:
-            extra_time = total_time - fees[0]
-            extra_fee = math.ceil(extra_time / fees[2]) * fees[3]
-            price[num] = fees[1] + extra_fee 
+            in_time = d[car_num][0]
+            park_time = current_time - in_time
+            d[car_num][1] += park_time
+            d[car_num][0] = -1
+            
+        
+    end_time = 23 * 60 + 59
+    for key , value in d.items():
+        
+        if value[0] != -1:
+            d[key][1] += end_time - value[0]
+            
+    result = []
+    for car_num in sorted(d.keys()):
+        total_time = d[car_num][1]
+        
+        if total_time <= base_time:
+            fee = base_fee
+        else:
+            extra_time = total_time - base_time
+            extra_units = math.ceil(extra_time / unit_time)
+            fee = base_fee + (extra_units * unit_fee)
+        
+        result.append(fee)
+    
+    return result
+            
 
-    return [price[num] for num in sorted(price.keys())]
