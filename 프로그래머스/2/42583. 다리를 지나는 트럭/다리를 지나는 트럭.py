@@ -1,3 +1,5 @@
+# 하나씩 순사적으로 왼쪽으로 이동하면서 빠져나가야할 때 -> 먼저 빼고, 추후에 넣는 방법으로 시도해봐도 될듯
+
 def solution(bridge_length, weight, truck_weights):
     time = 0
     
