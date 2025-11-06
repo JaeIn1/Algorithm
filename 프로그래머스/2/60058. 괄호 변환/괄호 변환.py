@@ -1,72 +1,57 @@
-from collections import deque
+def custom_u(u):
+    temp = ""
+    
+    for c in u:
+        if c == '(':
+            temp += ')'
+        else:
+            temp += '('
+    
+    return temp
 
-# 균형잡힌 괄호 문자열
-def is_correct_string(str):
+
+def is_correct(s):
     stack = []
-    for i in range(len(str)):
-        if str[i] == '(':
-            stack.append("(")
-        elif str[i] == ')':
+    
+    for c in s:
+        if c == '(':
+            stack.append(c)
+        else:
             if len(stack) == 0:
                 return False
             stack.pop()
             
-    if len(stack) != 0:
-        return False
-    else:
-        return True
-
-def separate_to_u_v(str):
-    queue = deque(str)
-    left_count , right_count = 0 , 0
-    u , v = '' , ''
+    return len(stack) == 0
     
-    while queue:
-        char = queue.popleft()
-        u += char
-        if char == '(':
-            left_count += 1
-        if char == ')':
-            right_count += 1
+    
+def seperate_u_v(p):
+    open_cnt = 0
+    close_cnt = 0
+    
+    for i in range(len(p)):
+        if p[i] == '(':
+            open_cnt += 1
+        else:
+            close_cnt += 1
             
-        if left_count == right_count:
-            break
-    v = ''.join(queue)
-    return u , v
-
-
-def reverse_parentheses(str):
-    reversed_str = ""
-    for char in str:
-        if char == "(":
-            reversed_str += ")"
-        elif char == ")":
-            reversed_str += "("
-    return reversed_str
+        if open_cnt == close_cnt:
+            u = p[:i+1]
+            v = p[i+1:]
+            return u, v
+            
     
-def change_to_correct_parentheses(str):
+def solution(p):
+    if not p:
+        return ""
     
-    # 1번 요구사항
-    if str == '':
-        return ''
+    u, v = seperate_u_v(p)
     
-    # 2번 요구사항
-    u , v = separate_to_u_v(str)
+    # 3. 올바른 괄호인지 판단
+    if is_correct(u):
+        return u + solution(v)
     
-    # 3번 요구사항
-    if is_correct_string(u):
-        return u + change_to_correct_parentheses(v)
+    # 4. 문자열 u가 "올바른 괄호 문자열"이 아니라면
     else:
-        return "(" + change_to_correct_parentheses(v) + ")" + reverse_parentheses(u[1:-1])
-        
-    
-def solution(str):
-  
-    if is_correct_string(str):
-        return str
-    else:
-        return change_to_correct_parentheses(str)
-    
-    return
-    
-    
+        temp = '(' + solution(v) + ')'
+        temp += custom_u(u[1:-1])
+        return temp
