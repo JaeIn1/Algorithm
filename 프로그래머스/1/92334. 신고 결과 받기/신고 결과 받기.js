@@ -1,26 +1,33 @@
 function solution(id_list, report, k) {
-    var answer = [];
-    let map = new Map();
-    let mapCnt = new Map();
-    let stopUser = [];
-
-    id_list.forEach((e) =>{
-        mapCnt.set(e , 0);
-    })
-    report.forEach((e) =>{
-        let [a , b] = e.split(" ");
-        map.set(a , map.get(a) ? [...new Set([...map.get(a) , b])] : [b]);
-    })
+    const uniqueReports = [...new Set(report)];
+    const reportedCount = new Map();
+    const userReports = new Map();
     
-    for(let [key , value] of map){
-        for(let i = 0; i < value.length; i++){
-            mapCnt.set(value[i] , mapCnt.get(value[i]) + 1);
-            if(mapCnt.get(value[i])  >= k ) stopUser.push(value[i]);
+    uniqueReports.forEach(r => {
+        const [reporter, reported] = r.split(' ');
+        
+        // 신고당한 횟수 증가
+        reportedCount.set(reported, (reportedCount.get(reported) || 0) + 1);
+        
+        // 신고한 사람 기록
+        if (!userReports.has(reporter)) {
+            userReports.set(reporter, []);
         }
-    }
-    id_list.forEach((e) =>{
-        answer.push((map.get(e) || []).filter((e) => stopUser.includes(e)).length)
+        userReports.get(reporter).push(reported);
+    });
+    
+    const suspended = [];
+    reportedCount.forEach((count, user) => {
+        if (count >= k) suspended.push(user);
+    });
+    
+    const result = id_list.map((user) => {
+        const myReports = userReports.get(user) || [];
+        return myReports.filter(reported => suspended.includes(reported)).length;
     })
     
-    return answer;
+    return result
+    
+    
+    
 }
